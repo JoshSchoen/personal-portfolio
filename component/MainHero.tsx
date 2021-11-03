@@ -7,7 +7,8 @@ import {
   Heading,
   Link,
   Button,
-  useTheme
+  useTheme,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { Dict } from '@chakra-ui/utils';
 
@@ -18,6 +19,13 @@ import { css } from '@emotion/react';
 const StyledCenter = styled(Center)(
   ({ theme }: Dict): Dict =>
     css`
+      &.md {
+        max-width: 625px;
+      }
+      &.base {
+        max-width: 100%;
+        margin-top: 24px;
+      }
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -28,7 +36,6 @@ const StyledCenter = styled(Center)(
 const StyledWrapper = styled(Center)(
   ({ theme }: Dict): Dict =>
     css`
-      max-width: 625px;
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -56,18 +63,20 @@ const StyledHeading = styled(Heading)(
 const StyledProfile = styled.div(
   ({ theme }: Dict): Dict =>
     css`
-      height: 325px;
-      width: auto;
+      height: 192px;
+      width: 192px;
+      overflow: hidden;
       display: flex;
       border-radius: 100px;
       background: whitesmoke;
       border: 6px solid ${theme.colors.teal[100]};
       box-shadow: 12px 12px 0px ${theme.colors.teal[500]};
+      &.md {
+        margin-right: 48px;
+      }
+
       .profile-pic {
-        max-width: 100%;
-        height: auto;
-        border-radius: 100px;
-        border: 8px solid white;
+        height: 330px;
       }
     `
 );
@@ -78,10 +87,21 @@ export interface Apptoolbar {
 
 const MainHero = ({ children }: Apptoolbar) => {
   const theme = useTheme();
+  const variant = useBreakpointValue({ base: 'base', md: 'md' });
   return (
     <>
-      <Flex justifyContent="center" alignContent="center">
-        <StyledCenter w="60%">
+      <Flex flexDirection={variant === 'base' ? 'column' : 'row'} justifyContent="center" alignContent="center">
+      <Box
+          display="flex"
+          flex="1"
+          justifyContent="space-around"
+          alignItems="center"
+        >
+          <StyledProfile className={variant}>
+            <img className="profile-pic" src="/josh-schoen-b-w.jpg" />
+          </StyledProfile>
+        </Box>
+        <StyledCenter className={variant}>
           <StyledWrapper>
             <StyledHeading as="h1" size="2xl">Hi, I'm Josh Schoen </StyledHeading>
             <StyledHeading as="h2" size="lg">Leader, UX/UI Engineer and Designer  </StyledHeading>
@@ -92,16 +112,6 @@ const MainHero = ({ children }: Apptoolbar) => {
             <Button colorScheme="teal">Get in touch</Button>
           </StyledWrapper>
         </StyledCenter>
-        <Box
-          display="flex"
-          flex="1"
-          justifyContent="flex-end"
-          alignItems="center"
-        >
-          <StyledProfile>
-            <img className="profile-pic" src="/josh-schoen-b-w.jpg" />
-          </StyledProfile>
-        </Box>
       </Flex>
     </>
   );

@@ -35,6 +35,8 @@ const Head = ({ customMeta }: { customMeta?: IPost }): JSX.Element => {
       {meta.date && (
         <meta property="article:published_time" content={meta.date} />
       )}
+                <link rel="icon" href="/favicon.ico" />
+          <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Teko:wght@300;400&display=swap" rel="stylesheet" />
     </NextHead>
   );
 };

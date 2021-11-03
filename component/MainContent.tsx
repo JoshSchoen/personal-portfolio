@@ -7,7 +7,8 @@ import {
     Heading,
     Link,
     Button,
-    useTheme
+    useTheme,
+    useBreakpointValue
   } from '@chakra-ui/react';
   import { Dict } from '@chakra-ui/utils';
   
@@ -18,8 +19,15 @@ import {
   const StyledSection = styled.section(
     ({ theme }: Dict): Dict =>
       css`
-        margin: 64px 84px;
+      margin-top: 64px;
+      padding: 32px 24px;
+      /* max-width: 1280px; */
+      &.lg {
+        margin: 64px 24px;
         padding: 32px 64px;
+      }
+        /* margin: 64px 24px;
+        padding: 32px 24px; */
       `
   );
   
@@ -30,9 +38,10 @@ import {
   
   const MainContent = ({ children }: Apptoolbar) => {
     const theme = useTheme();
+    const variant = useBreakpointValue({ base: 'base', md: 'md', lg: 'lg' });
     return (
       <>
-        <StyledSection>
+        <StyledSection className={variant}>
         {children}
         </StyledSection>
       </>

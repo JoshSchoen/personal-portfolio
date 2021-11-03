@@ -4,14 +4,16 @@ import {
   Heading,
   Text,
   theme as defaultTheme,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { Dict } from '@chakra-ui/utils';
 import MainHero from 'component/MainHero';
 import styled from '@emotion/styled';
 import Layout from 'component/Layout';
-import { getAllPosts, getSortedPosts } from '../../lib/posts';
-import { IWorkListProps} from 'types/posts';
+import { getAllPosts } from '../../lib/posts';
+import { IWorkListProps } from 'types/posts';
+import {WorkSummaryCard} from 'component/WorkSummaryCard';
 
 const theme = extendTheme({
   fonts: {
@@ -50,88 +52,23 @@ const theme = extendTheme({
   }
 });
 
-const StyledAnchor = styled.a(
-  ({ theme }: Dict): Dict =>
-    css`
-      display: flex;
-      justify-content: space-between;
-      height: 500px;
-      width: 100%;
-      border-radius: 12px;
-      background: ${theme.colors.teal[100]};
-      margin-bottom: 32px;
-      transition: all 0.2s ease-in-out;
-      &:hover {
-        transform: scale(1.01);
-        opacity: 0.95;
-      }
-    `
-);
 
-const StyledWorkContent = styled.div(
-  ({ theme }: Dict): Dict =>
-    css`
-      padding: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 100%;
-
-    `
-);
-
-const StyledImage = styled.img`
-  height: 100%;
-  width: auto;
-  padding-right: 8px;
-`;
 
 // console.log(theme);
 
 const Home = ({ posts }: IWorkListProps): JSX.Element => {
-  // console.log(allPostsData, 'component');
+  const variant = useBreakpointValue({ base: 'base', md: 'md', lg: 'lg' });
   return (
     <Layout>
-        <>
+      <>
         <MainHero></MainHero>
         <Heading marginTop="12" marginBottom="8" as="h2">
           Work
         </Heading>
         {posts.map((post) => (
-                  
-                  <StyledAnchor key={post.slug} href={`work/${post.slug}`}>
-                  <StyledWorkContent>
-                    <div>
-                      <Heading marginTop="12" as="h3" fontSize="4xl">
-                        {post.title}
-                      </Heading>
-                      <Text marginBottom="8"marginTop="4"  fontSize="lg">
-                        {post.description}
-                      </Text>
-                      <Button colorScheme="teal">View project</Button>
-                    </div>
-                  </StyledWorkContent>
-                  <StyledImage className="main-image" src={`${post.teaserImage}`} />
-                </StyledAnchor>
+          <WorkSummaryCard key={post.slug} post={post} />
         ))}
-
-        {/* <StyledAnchor href="/work/platform-ux">
-          <StyledWorkContent>
-            <div>
-              <Heading marginTop="12" as="h3" fontSize="4xl">
-                Strategy: Unified Experience
-              </Heading>
-              <Text marginBottom="8"marginTop="4"  fontSize="lg">
-                This initiative was broad as it was deep. 
-                Taking 5 completely sperate products and unifing the experiences to create 1 Digital.ai expierence.
-              </Text>
-              <Button colorScheme="teal">View project</Button>
-            </div>
-          </StyledWorkContent>
-          <StyledImage className="main-image" src="/paltform-ux.jpg" />
-        </StyledAnchor> */}
-        </>
+      </>
     </Layout>
   );
 };
@@ -139,8 +76,15 @@ const Home = ({ posts }: IWorkListProps): JSX.Element => {
 export default Home;
 
 export async function getStaticProps() {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title', 'subtitle', 'teaserImage']);
+  const posts = getAllPosts([
+    'date',
+    'description',
+    'slug',
+    'title',
+    'subtitle',
+    'teaserImage'
+  ]);
   return {
-    props: { posts },
+    props: { posts }
   };
 }
