@@ -1,19 +1,17 @@
 import {
-  Button,
   extendTheme,
   Heading,
-  Text,
   theme as defaultTheme,
-  useBreakpointValue
 } from '@chakra-ui/react';
-import { css } from '@emotion/react';
-import { Dict } from '@chakra-ui/utils';
-import MainHero from 'component/MainHero';
-import styled from '@emotion/styled';
-import Layout from 'component/Layout';
-import { getAllPosts } from '../../lib/posts';
-import { IWorkListProps } from 'types/posts';
-import {WorkSummaryCard} from 'component/WorkSummaryCard';
+
+import MainHero from 'components/MainHero';
+import Layout from 'components/Layout';
+import { getAllPosts, getPost, getPostBySlug } from '../../lib/posts';
+import { IWorkItemProps, IWorkListProps } from 'types/posts';
+import {WorkSummaryCard} from 'components/WorkSummaryCard';
+import React from 'react';
+import { MDXRemote } from 'next-mdx-remote';
+import { mdxComponents } from 'lib/mdx-components';
 
 const theme = extendTheme({
   fonts: {
@@ -52,12 +50,12 @@ const theme = extendTheme({
   }
 });
 
+export interface HomeProps extends IWorkListProps {
+  about: IWorkItemProps;
+  
+}
 
-
-// console.log(theme);
-
-const Home = ({ posts }: IWorkListProps): JSX.Element => {
-  const variant = useBreakpointValue({ base: 'base', md: 'md', lg: 'lg' });
+const Home = ({ posts, about }: HomeProps): JSX.Element => {
   return (
     <Layout>
       <>
@@ -65,9 +63,10 @@ const Home = ({ posts }: IWorkListProps): JSX.Element => {
         <Heading marginTop="12" marginBottom="8" as="h2">
           Work
         </Heading>
-        {posts.map((post) => (
-          <WorkSummaryCard key={post.slug} post={post} />
+        {posts.map((post, index) => (
+          <WorkSummaryCard index={index} key={post.slug} post={post} backgroundColor={post.themeColor} />
         ))}
+        <MDXRemote {...about.source} components={mdxComponents()} />
       </>
     </Layout>
   );
@@ -82,9 +81,13 @@ export async function getStaticProps() {
     'slug',
     'title',
     'subtitle',
-    'teaserImage'
+    'teaserImage',
+    'themeColor',
+    'type'
   ]);
+  const about = await getPost('about');
+
   return {
-    props: { posts }
+    props: { posts, about }
   };
 }

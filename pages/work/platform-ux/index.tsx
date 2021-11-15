@@ -17,7 +17,7 @@ import { Dict } from '@chakra-ui/utils';
 import React, { ReactElement } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import Layout from 'component/Layout';
+import Layout from 'components/Layout';
 
 const StyledCenter = styled(Center)(
   ({ theme }: Dict): Dict =>

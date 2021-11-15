@@ -1,18 +1,107 @@
 ---
 date: '2021-03-28'
-teaserImage: /fin-crimes-main.jpg
-title: FinCrimes Skunkworks
-subtitle: Designing a predictive and preventive financial crimes AI Application.
-description: While working at Teradata I was a part of R&D devision we called "Art of the Possible". At its core was the basis of Skunkwork projects that often didn't go anywhere. That said, they sometimes they morphed into separate initiatives or drove other ideas. Apologies for spoilers, this project was not much different but reshaped my career along with other business specific outcomes.
+teaserImage: /allen-edmonds/email-main.jpg
+title: E-commerce checkout
+subtitle: Improving conversion rate
+description: While working as the Lead UX Designer at one of my favorite shoe companies Allen Edmonds. I learned a ton about e-commerce and B2C user experience. To this day the things I learned about data driven design has shaped how I go about design and developing experiences and interfaces.
+themeColor: allenEdmonds
+type: work
 ---
 
+<ProjectSection>
 
-You can check it out on [YouTube](https://youtu.be/6Lxdp1R40EY).
+<SectionImage width="60%" margin="4" imgSrc="/allen-edmonds/email-main.jpg" alt="Challenge" />
+<SectionContent margin="4">
 
-## Preservation Method
+While working as the Lead UX Designer at one of my favorite shoe companies Allen Edmonds. I learned a ton about e-commerce and B2C user experience. To this day the things I learned about data driven design has shaped how I go about design and developing experiences and interfaces.
 
-Transfer the stock to a food storage container and store in the fridge. It can be used for 2-3 days.
+There are many types of conversions in e-commerce, page view, add to cart counts, viewing the shopping cart and the ultimate and the end of the conversion funnel, pacing an order. As a part of the e-commerce team Allen Edmonds we were always trying to find ways to increase our checkout conversion rate.
 
-<Heading marginTop="12" as="h3" fontSize="4xl">
-    Strategy: Unified Experience
-</Heading>
+<Flex>
+
+<Box width="80%" marginRight="12">
+
+#### The goal:
+
+- Increase checkout conversion rate: Online sales contributed to abut 35% of total revenue. Being Allen Edmonds didn't have a major presence at big box retail stores it was always important to increase online sales.
+- Create customer engagement opportunities to further develop the proof of concept with real-word data.
+
+</Box>
+
+<Box className="attributes">
+
+#### Client
+
+Allen Edmonds
+
+#### Role
+
+Lead UX Designer, UI Developer
+
+</Box>
+</Flex>
+</SectionContent>
+
+
+
+### The Challenge
+
+<SectionImage margin="4" imgSrc="/challenge.png" alt="Challenge" />
+
+<SectionContent margin="4">
+
+Find opportunities to reduce customer friction and cart abandonment during the checkout process. Increase conversion rate by 2.5 - 3%. While this percent doesn't seem like much in the market of high-end mens shoes this is actually a pretty lofty goal for purchasing shoes someone hasn't tried on before and start around $300 USD.
+
+</SectionContent>
+
+### The Solution
+
+<SectionImage width="100%" margin="4" imgSrc="/allen-edmonds/email-solutions.png" alt="Solution" />
+
+<SectionContent margin="4">
+
+The e-commerce team was small but nimble. We had a business analyst, web producer, the director of e-commerce and myself the Lead UX Designer. Together we looked at every step of the checkout process including.
+
+- Adding to cart
+- Shopping cart review
+- Shipping
+- Billing
+- Pacing an order
+
+</SectionContent>
+
+<SectionImage width="80%" margin="4" imgSrc="/allen-edmonds/move-email.jpg" alt="Moving the email to the shipping page" />
+<SectionContent margin="4">
+
+Through our research using Google analytics we noticed that cart abandonment increased when users landed on the billing page but we didn't understand why.
+
+While we had billing page view analytics we didn't have data on what users were actually doing on the page. If the user wasn't logged into their Allen Edmonds account billing forms would not auto populate and generally speaking billing pages tend to be form heavy. Our hypothesis was users were getting "hung up" on the one of the form elements but we didn't have tracking for us to validate that hypothesis.
+
+I was in charge of tagging all pages using a tag manager that integrated with Google Analytics. We tagged all form elements on the billing page and allowed the data to be collected for about 2 months. We found that a required email field at the top of the page before the actual billing form not being interacted with very often but was a required field before the checkout process would allow users to moving on to the pace order page. If the user was not logged into their account the email field was not getting populated. After a unauthenticated user filled out the billing form the user would try and submit the form but the form would not allow the user to proceed to the place order page. Interestingly there was error messaging but user was not able to see it as  it was out of view. Instead the got frustrated and abandoned their cart, thus loosing important revenue which caused lower conversion rates.
+
+
+We went through many design concepts and ultimately decided to do a A/B test. The control was the current billing form with the email. The test was moving the email input field to the previous shipping page. Our hypothesis was the email should be co-located with other personal contact information and rather than next to the billing information. 
+</SectionContent>
+
+### The Result
+
+<SectionImage width="80%" margin="4" imgSrc="/allen-edmonds/email-result.png" alt="Email move result" />
+<SectionContent margin="4">
+
+The A/B test was 50/50 split test and ran for about a six weeks until the test was statistically significant at 95% or above. We also monitored the test closely to make sure the test was not dramatically reducing checkout rate. While monitoring the test we started seeing the test was performing well but without it being at or above 95% it was not enough to take action. 
+
+We continued with the test, once the test became 95% statistically significant there was a clear winner, moving the email field to be co-located with the shipping form was the winner. We implemented the change and over the next few months we saw a conversation rate increase of 1.65%.
+
+While we didn't meet our total goal of increasing conversion rate by 2.5 - 3% we did significantly improve the checkout process. We then looked at other areas to improve the user experience by creating more engaging and informative content which got us a little closer which also increased our discoverability through SEO optimization.
+
+</SectionContent>
+
+
+### Takeaways
+
+<SectionContent margin="4">
+
+I managed many A/B tests during my time at Allen Edmonds, often they came back insignificant so we moved to other opportunities to optimize the UX. This particular A/B test was unique in that we did a lot research, analysis,  and concepts prior to running the test. After using this approach we repeated it in other areas of the website and the results where much better because we took the time to really understand the why's before running the test. Testing in isolation is also critical part of improving user experience through A/B testing techniques. Always reduce the number of variables when testing.
+
+</SectionContent>
+</ProjectSection>

@@ -2,6 +2,7 @@ import fs from 'fs';
 
 import path, { join } from 'path';
 import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
 
 type PostItems = {
   [key: string]: string;
@@ -13,6 +14,27 @@ export const postFilePaths = fs
   .readdirSync(POSTS_PATH)
   // Only include md(x) files
   .filter((path) => /\.mdx?$/.test(path));
+
+
+  export async function getPost(slug: string) {
+
+    const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
+    const source = fs.readFileSync(postFilePath);
+  
+    const { content, data } = matter(source);
+    const mdxSource = await serialize(content, {
+      // Optionally pass remark/rehype plugins
+      //   mdxOptions: {
+      //     remarkPlugins: [require('remark-code-titles')],
+      //     rehypePlugins: [mdxPrism, rehypeSlug, rehypeAutolinkHeadings],
+      //   },
+      scope: data
+    });
+    return {
+        source: mdxSource,
+        frontMatter: data
+    };
+  }
 
 export function getPostBySlug(slug: string, fields: string[] = []): PostItems {
   const realSlug = slug.replace(/\.mdx$/, '');
@@ -38,12 +60,12 @@ export function getPostBySlug(slug: string, fields: string[] = []): PostItems {
   return items;
 }
 
-export function getAllPosts(fields: string[] = []): PostItems[] {
+export function getAllPosts(fields: string[] = [], type: string = 'work'): PostItems[] {
   const slugs = fs.readdirSync(POSTS_PATH);
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))
     // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+    .filter((post) => post.type === type).sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;
 }
 

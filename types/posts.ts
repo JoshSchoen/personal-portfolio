@@ -15,6 +15,7 @@ export interface IPost {
     client?: string;
     goals?: string[];
     type?: string;
+    themeColor?: string;
   }
 
   export type IWorkListProps = {
