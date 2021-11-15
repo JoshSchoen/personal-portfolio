@@ -6,7 +6,7 @@ import {
 
 import MainHero from 'components/MainHero';
 import Layout from 'components/Layout';
-import { getAllPosts, getPost, getPostBySlug } from '../../lib/posts';
+import { getAllPosts, getPost, getPostBySlug } from '../lib/posts';
 import { IWorkItemProps, IWorkListProps } from 'types/posts';
 import {WorkSummaryCard} from 'components/WorkSummaryCard';
 import React from 'react';

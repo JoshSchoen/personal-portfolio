@@ -9,8 +9,8 @@ module.exports = withMDX({
   async redirects() {
     return [
       {
-        source: '/',
-        destination: '/work',
+        source: '/work',
+        destination: '/',
         permanent: true,
       },
     ];

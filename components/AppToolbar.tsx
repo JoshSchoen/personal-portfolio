@@ -85,17 +85,17 @@ export interface Apptoolbar {
 
 const defaultNavlist: Navlist[] = [
   {
-    path: '/work',
+    path: '/',
     label: ' Work',
     exact: false
   },
   {
-    path: '/work#about',
+    path: '/#about',
     label: ' About',
     exact: true
   },
   {
-    path: '/work#skills',
+    path: '/#skills',
     label: ' Skills',
     exact: true
   },
