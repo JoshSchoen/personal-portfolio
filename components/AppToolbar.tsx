@@ -85,7 +85,7 @@ export interface Apptoolbar {
 
 const defaultNavlist: Navlist[] = [
   {
-    path: '/',
+    path: '/#',
     label: ' Work',
     exact: false
   },
