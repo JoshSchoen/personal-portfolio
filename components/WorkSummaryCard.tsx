@@ -21,16 +21,22 @@ const StyledAnchor = styled.a(
     css`
       display: flex;
       justify-content: space-between;
-      height: 500px;
+      height: auto;
       width: 100%;
       border-radius: 12px;
       /* background: ${theme.colors.teal[100]}; */
       margin-bottom: 32px;
       transition: all 0.2s ease-in-out;
-      &.base,
+
       &.md {
         flex-direction: column-reverse;
         height: 100%;
+        img {
+          padding: 0 12px;
+          height: 500px;
+          max-width: max-content;
+          width: auto;
+        }
       }
       &:hover {
         transform: scale(1.01);
@@ -73,9 +79,6 @@ const StyledImageHeaderContainer = styled.div`
 
 const StyledImage = styled.img`
   padding: 0 12px;
-  max-height: 500px;
-  max-width: max-content;
-  width: auto;
 `;
 
 const StyledButton = styled(Button)`
@@ -113,7 +116,9 @@ export const WorkSummaryCard = ({
   };
 
   const renderHeader = (
-    <StyledImageHeaderContainer style={{backgroundColor: theme.colors[backgroundColor][100]}}>
+    <StyledImageHeaderContainer
+      style={{ backgroundColor: theme.colors[backgroundColor][100] }}
+    >
       <StyledImage className="main-image" src={`${post.teaserImage}`} />
     </StyledImageHeaderContainer>
   );
@@ -128,37 +133,44 @@ export const WorkSummaryCard = ({
           style={{
             backgroundColor: theme.colors[backgroundColor][100],
             color: color,
-            flexDirection: variant === 'base' || variant === 'md' ? 'column-reverse' : isOdd(index) ? 'row-reverse' : 'row'
+            flexDirection:
+              variant === 'base' || variant === 'md'
+                ? 'column-reverse'
+                : isOdd(index)
+                ? 'row-reverse'
+                : 'row'
           }}
         >
           <StyledWorkContent className={variant}>
-              <div>
-                <Heading
-                  color={`${color}.800`}
-                  marginTop="0"
-                  as="h3"
-                  fontSize="4xl"
-                >
-                  {post.title}
-                </Heading>
-                <Text
-                  color={`${color}.800`}
-                  marginBottom="8"
-                  marginTop="4"
-                  fontSize="lg"
-                >
-                  {post.subtitle}
-                </Text>
-                <StyledButton color={theme.colors[backgroundColor][400]}>
-                  View project
-                </StyledButton>
-              </div>
+            <div>
+              <Heading
+                color={`${color}.800`}
+                marginTop="0"
+                as="h3"
+                fontSize="4xl"
+              >
+                {post.title}
+              </Heading>
+              <Text
+                color={`${color}.800`}
+                marginBottom="8"
+                marginTop="4"
+                fontSize="lg"
+              >
+                {post.subtitle}
+              </Text>
+              <StyledButton color={theme.colors[backgroundColor][400]}>
+                View project
+              </StyledButton>
+            </div>
           </StyledWorkContent>
           <StyledImageContainer>
             <StyledImage className="main-image" src={`${post.teaserImage}`} />
           </StyledImageContainer>
         </StyledAnchor>
-      ) : renderHeader}
+      ) : (
+        renderHeader
+      )}
     </>
   );
 };

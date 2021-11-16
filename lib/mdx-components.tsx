@@ -13,6 +13,7 @@ import { ProjectSection } from 'components/project-layout/ProjectSection';
 import { SectionImage } from 'components/project-layout/SectionImage';
 import { SectionContent } from 'components/project-layout/SectionContent';
 import WorkSummaryCard from 'components/WorkSummaryCard';
+import Skills from 'components/Skils';
 
 export const mdxComponents = () => {
   const theme = useTheme();
@@ -59,6 +60,7 @@ export const mdxComponents = () => {
     Flex,
     ProjectSection,
     SectionImage: (props) => <SectionImage {...props} />,
-    SectionContent
+    SectionContent,
+    Skills
   };
 };
