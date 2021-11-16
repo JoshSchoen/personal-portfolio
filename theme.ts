@@ -4,7 +4,7 @@ import {StyledNavLink} from './components/NavLink';
 
 // Add color mode config
 const config = {
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
   useSystemColorMode: false,
 };
 
