@@ -76,6 +76,7 @@ export interface Navlist {
   path: string;
   label: string;
   exact: boolean;
+  newTab?: boolean;
 }
 
 export interface Apptoolbar {
@@ -102,7 +103,8 @@ const defaultNavlist: Navlist[] = [
   {
     path: '/josh-schoen-resume.pdf',
     label: ' Resume',
-    exact: true
+    exact: true,
+    newTab: true
   }
 ];
 
@@ -130,7 +132,7 @@ const AppToolbar = ({
             <StyledNav>
             {variant === 'md' ? (
               navList.map((nav) => (
-                <NavLink key={nav.path} href={nav.path}>
+                <NavLink key={nav.path} href={nav.path} newTab={nav.newTab}>
                   {nav.label}
                 </NavLink>
               ))

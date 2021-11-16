@@ -11,6 +11,7 @@ export interface NavLinkProps {
   className?: string;
   children: ReactElement | string;
   type?: 'mobile' | 'desktop';
+  newTab?: boolean;
 }
 
 export const StyledNavLink = styled(Link)(
@@ -42,7 +43,8 @@ const NavLink = ({
   exact,
   children,
   className = '',
-  type = 'desktop'
+  type = 'desktop',
+  newTab = false
 }: NavLinkProps) => {
   const { pathname } = useRouter();
   const { colorMode } = useColorMode();
@@ -53,7 +55,7 @@ const NavLink = ({
   }
 
   return (
-    <StyledNavLink className={`${className} ${type} ${colorMode}`} href={href}>
+    <StyledNavLink target={newTab ? '_blank' : null} className={`${className} ${type} ${colorMode}`} href={href}>
     {children}
   </StyledNavLink>
   );
