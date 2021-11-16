@@ -9,7 +9,6 @@ import Layout from 'components/Layout';
 import { getAllPosts, getPost, getPostBySlug } from '../lib/posts';
 import { IWorkItemProps, IWorkListProps } from 'types/posts';
 import {WorkSummaryCard} from 'components/WorkSummaryCard';
-import React from 'react';
 import { MDXRemote } from 'next-mdx-remote';
 import { mdxComponents } from 'lib/mdx-components';
 

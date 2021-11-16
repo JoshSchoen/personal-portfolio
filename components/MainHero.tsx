@@ -7,14 +7,15 @@ import {
   Button,
   useTheme,
   useBreakpointValue,
-  useColorMode
-  
+  useColorMode,
+  Link
 } from '@chakra-ui/react';
 import { Dict } from '@chakra-ui/utils';
 
 import React, { ReactElement } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import NextLink from 'next/link';
 
 const StyledCenter = styled(Center)(
   ({ theme }: Dict): Dict =>
@@ -101,7 +102,9 @@ const MainHero = ({ children }: Apptoolbar) => {
               I help companies design and develop digital solutions. I'm open to
               freelance work and I'm passionate about working with teams to solve hard problems.
             </Text>
+            <NextLink href='mailto:jshchoen@gmail.com'>  
             <Button colorScheme="teal">Get in touch</Button>
+            </NextLink>
           </StyledWrapper>
         </StyledCenter>
         <Box

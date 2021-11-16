@@ -100,7 +100,7 @@ const defaultNavlist: Navlist[] = [
     exact: true
   },
   {
-    path: '/resume',
+    path: '/josh-schoen-resume.pdf',
     label: ' Resume',
     exact: true
   }

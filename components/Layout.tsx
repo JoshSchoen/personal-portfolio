@@ -21,7 +21,7 @@ import { useRouter } from 'next/router';
         <MainContent>
         {children}
         </MainContent>
-        <footer ></footer>
+        <footer></footer>
       </>
     );
   };
