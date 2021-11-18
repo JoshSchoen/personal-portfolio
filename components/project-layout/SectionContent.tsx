@@ -6,11 +6,12 @@ export interface ProjectSectionProps {
   margin?: string;
   width?: string;
   id?: string;
+  mdWidth?: string;
 }
-export const SectionContent = ({ children, margin = '0', width = '70%', id = null }: ProjectSectionProps) => {
+export const SectionContent = ({ children, margin = '0', mdWidth = '70%', width = '100%', id = null }: ProjectSectionProps) => {
     const variant = useBreakpointValue({ base: 'base', md: 'md' });
     return (
-        <Box id={id} width={variant === 'md' ? width : 'auto'} margin={margin}>{children}</Box>
+        <Box id={id} width={variant === 'md' ? mdWidth : width} margin={margin}>{children}</Box>
     );
 
     };

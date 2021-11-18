@@ -14,6 +14,7 @@ import { SectionImage } from 'components/project-layout/SectionImage';
 import { SectionContent } from 'components/project-layout/SectionContent';
 import WorkSummaryCard from 'components/WorkSummaryCard';
 import Skills from 'components/Skils';
+import { SectionFlex } from 'components/project-layout/SectionFlex';
 
 export const mdxComponents = () => {
   const theme = useTheme();
@@ -61,6 +62,7 @@ export const mdxComponents = () => {
     ProjectSection,
     SectionImage: (props) => <SectionImage {...props} />,
     SectionContent,
-    Skills
+    Skills,
+    SectionFlex
   };
 };
