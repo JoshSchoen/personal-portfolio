@@ -16,6 +16,7 @@ import React, { ReactElement } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import NextLink from 'next/link';
+import { motion } from 'framer-motion';
 
 const StyledCenter = styled(Center)(
   ({ theme }: Dict): Dict =>
@@ -91,7 +92,6 @@ const MainHero = ({ children }: Apptoolbar) => {
   const variant = useBreakpointValue({ base: 'base', md: 'md' });
   const headingColor = colorMode === 'light' ? theme.colors.teal[500]: theme.colors.teal[100];
   return (
-    <>
       <Flex flexDirection={variant === 'base' ? 'column-reverse' : 'row'} justifyContent="center" alignContent="center">
 
         <StyledCenter className={variant}>
@@ -118,7 +118,6 @@ const MainHero = ({ children }: Apptoolbar) => {
           </StyledProfile>
         </Box>
       </Flex>
-    </>
   );
 };
 

@@ -10,9 +10,9 @@ import { postFilePaths, POSTS_PATH } from 'lib/posts';
 import { mdxComponents } from 'lib/mdx-components';
 import React from 'react';
 import { Heading } from '@chakra-ui/layout';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const SlugPage = ({ source, frontMatter }: IWorkItemProps): JSX.Element => {
-
   const customMeta: IPost = {
     title: `${frontMatter.title} - Josh Schoen`,
     description: frontMatter.description,
@@ -23,16 +23,21 @@ const SlugPage = ({ source, frontMatter }: IWorkItemProps): JSX.Element => {
   };
   return (
     <Layout customMeta={customMeta}>
-      <>
-      <Heading as="h1" fontSize="5xl" textAlign="center">{frontMatter.title}</Heading>
-      <Heading
-        marginTop="4"
-        as="h2"
-        fontSize="4xl"
-        textAlign="center"
-      >{frontMatter.subtitle}</Heading>
-        <MDXRemote {...source} components={mdxComponents()} />
-      </>
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <Heading as="h1" fontSize="5xl" textAlign="center">
+            {frontMatter.title}
+          </Heading>
+          <Heading marginTop="4" as="h2" fontSize="4xl" textAlign="center">
+            {frontMatter.subtitle}
+          </Heading>
+          <MDXRemote {...source} components={mdxComponents()} />
+        </motion.div>
+      </AnimatePresence>
     </Layout>
   );
 };

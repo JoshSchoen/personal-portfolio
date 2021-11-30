@@ -1,16 +1,14 @@
-import {
-  extendTheme,
-  Heading,
-  theme as defaultTheme,
-} from '@chakra-ui/react';
+import { extendTheme, Heading, theme as defaultTheme } from '@chakra-ui/react';
 
 import MainHero from 'components/MainHero';
 import Layout from 'components/Layout';
 import { getAllPosts, getPost, getPostBySlug } from '../lib/posts';
 import { IWorkItemProps, IWorkListProps } from 'types/posts';
-import {WorkSummaryCard} from 'components/WorkSummaryCard';
+import { WorkSummaryCard } from 'components/WorkSummaryCard';
 import { MDXRemote } from 'next-mdx-remote';
 import { mdxComponents } from 'lib/mdx-components';
+import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 
 const theme = extendTheme({
   fonts: {
@@ -51,22 +49,34 @@ const theme = extendTheme({
 
 export interface HomeProps extends IWorkListProps {
   about: IWorkItemProps;
-  
 }
 
 const Home = ({ posts, about }: HomeProps): JSX.Element => {
   return (
     <Layout>
-      <>
+      <AnimatePresence>
+
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        >
         <MainHero></MainHero>
-        <Heading marginTop="12" marginBottom="8" as="h2">
+        <Heading style={{display: 'flex' ,justifyContent: 'center'}} marginTop="12" marginBottom="8" as="h2">
           Work
         </Heading>
-        {posts.map((post, index) => (
-          <WorkSummaryCard index={index} key={post.slug} post={post} backgroundColor={post.themeColor} />
-        ))}
+
+          {posts.map((post, index) => (
+            <WorkSummaryCard
+              index={index}
+              key={post.slug}
+              post={post}
+              backgroundColor={post.themeColor}
+            />
+          ))}
+        </motion.div>
         <MDXRemote {...about.source} components={mdxComponents()} />
-      </>
+      </AnimatePresence>
     </Layout>
   );
 };
